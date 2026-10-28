@@ -216,11 +216,6 @@ select.fld option{background:var(--bg);color:var(--tx)}
 @keyframes pulse{0%{transform:scale(.9);opacity:.8}100%{transform:scale(1.5);opacity:0}}
 
 /* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
-  .rv,.hair{opacity:1!important;transform:none!important}
-  .fl>i,.marq-t{animation:none!important}
-}
 
 /* ---------- Logo medallion (brand placeholder for photography) ---------- */
 .medal{position:absolute;z-index:1;left:50%;top:50%;width:min(74%,360px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 28%,#fffaf0,#efe1c8);display:grid;place-items:center;box-shadow:0 34px 70px -30px rgba(70,46,10,.55),inset 0 0 0 1px rgba(196,163,90,.45)}
@@ -255,14 +250,6 @@ body::after{content:'';position:fixed;inset:-50%;z-index:150;pointer-events:none
   animation:grain 1.1s steps(6) infinite}
 [data-theme="night"] body::after{opacity:.07}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
-@media (prefers-reduced-motion:reduce){
-  .kin-i{transform:none!important;letter-spacing:-.015em!important}
-  .arch.rv{clip-path:inset(0 round 999px 999px 26px 26px)!important}
-  .arch.rv .ph{transform:none!important}
-  .h2.rv{filter:none!important}
-  body::after{animation:none}
-  .ld-mark,.ld-tag b{opacity:1!important;transform:none!important;filter:none!important}
-}
 
 /* ---------- Diwali offers ---------- */
 .otag{display:table;margin:-.2rem 0 1.1rem;padding:.35rem .85rem;border:1px solid var(--gold);border-radius:999px;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
@@ -323,8 +310,18 @@ body::after{content:'';position:fixed;inset:-50%;z-index:150;pointer-events:none
 .dw.on .rvd{opacity:1;transform:none}
 .dw-card .rvd{transition:opacity 1.1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(.7s + var(--i,0)*.1s)}
 .dw:not(.on) .rvd{transition-delay:0s}
-@media (prefers-reduced-motion:reduce){
-  .dw-card{clip-path:none!important;transform:none!important}
-  .rvd{opacity:1!important;transform:none!important}
-  .dw-embers{display:none}
-}
+
+/* ---------- Reduced motion (html.rm is set only if the OS asks for it AND ?motion=full was not used) ---------- */
+.rm *,.rm *::before,.rm *::after{animation-iteration-count:1!important;scroll-behavior:auto!important}
+.rm .fl>i,.rm .marq-t,.rm .dw-embers i,.rm .cue i,.rm .fab::after,.rm .dw-fab::after,.rm .medal::after,.rm .ph::before{animation:none!important}
+.rm body::after{animation:none!important}
+.rm .rv{transform:none!important;filter:none!important}
+.rm .hair{transform:none!important}
+.rm .kin-i{transform:none!important;letter-spacing:-.015em!important}
+.rm .arch.rv{clip-path:inset(0 round 999px 999px 26px 26px)!important}
+.rm .arch.rv .ph{transform:none!important}
+.rm .ld-mark,.rm .ld-tag b,.rm .ld-line,.rm .ld-bar i{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}
+.rm .ld-panel,.rm .ld,.rm #loader{transition-duration:.5s!important}
+.rm .dw-card{clip-path:none!important;transform:none!important}
+.rm .rvd{transform:none!important}
+.rm .dw-embers{display:none}
