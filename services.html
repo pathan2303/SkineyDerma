@@ -1,149 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="day">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Services — SkinNey Derma Clinic | Mira Road East</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Treatments — PRP, GFC, Laser, MNRF, HIFU, Peels, Microblading | SkinNey Derma Clinic</title>
+<meta name="description" content="The full SkinNey Derma Clinic treatment catalogue: PRP, GFC, laser, MNRF, HIFU, chemical peels, microblading, lip blush and more in Mira Road East, Mumbai.">
+<meta name="theme-color" content="#F5EFE8">
+<link rel="icon" href="SkinNey.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('skinney-theme');document.documentElement.dataset.theme=t==='night'?'night':'day'}catch(e){document.documentElement.dataset.theme='day'}</script>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{nude:{50:'#FBF8F5',100:'#F5EFE8',200:'#EDE4D9',300:'#D9CBB8'},gold:{DEFAULT:'#C4A35A',dark:'#A88B3E'},ink:{DEFAULT:'#2C2A28',soft:'#5A5550',muted:'#8A847C'}},fontFamily:{serif:['Cormorant Garamond','Georgia','serif'],sans:['Inter','system-ui','sans-serif']}}}}</script>
-<style>
-:root{--e:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:#FBF8F5;color:#2C2A28;overflow-x:hidden}
-.font-serif{font-family:'Cormorant Garamond',Georgia,serif}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--e),transform .85s var(--e)}.reveal.on{opacity:1;transform:none}
-.card{transition:transform .5s var(--e),box-shadow .5s}.card:hover{transform:translateY(-8px);box-shadow:0 24px 48px -18px rgba(44,42,40,.14)}
-.nav-a{position:relative}.nav-a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1px;background:#C4A35A;transition:width .3s var(--e)}.nav-a:hover::after,.nav-a.active::after{width:100%}
-.btn-g{background:#C4A35A;color:#fff;transition:background .3s,transform .3s var(--e)}.btn-g:hover{background:#A88B3E;transform:translateY(-2px)}
-.page-hero{opacity:0;transform:translateY(24px);animation:up .9s var(--e) .2s forwards}
-@keyframes up{to{opacity:1;transform:none}}
-.svc-item{transition:transform .4s var(--e),border-color .4s}.svc-item:hover{transform:translateX(6px);border-color:rgba(196,163,90,.4)}
-</style>
+<link rel="stylesheet" href="site.css">
+<noscript><style>.rv,.hair{opacity:1!important;transform:none!important}#loader{display:none}</style></noscript>
 </head>
-<body>
-<header class="sticky top-0 z-50 bg-nude-50/95 backdrop-blur-md border-b border-nude-200/50">
-<div class="max-w-6xl mx-auto px-5 h-16 md:h-[68px] flex items-center justify-between">
-<a href="index.html" class="flex items-center gap-2.5">
-<img src="SkinNey.png" alt="SkinNey" class="h-10 w-auto"/>
-</a>
-<nav class="hidden md:flex items-center gap-7 text-[11px] tracking-[0.12em] uppercase text-ink-soft">
-<a href="index.html" class="nav-a">Home</a>
-<a href="about.html" class="nav-a">About</a>
-<a href="services.html" class="nav-a active">Services</a>
-<a href="contact.html" class="nav-a">Contact</a>
-</nav>
-<a href="https://wa.me/919920706262" target="_blank" class="btn-g text-[11px] tracking-[0.1em] uppercase px-5 py-2.5 rounded-full font-medium">Book Now</a>
+<body data-page="services">
+
+<div id="loader" aria-hidden="true">
+  <div class="ld">
+    <span class="ld-line"></span>
+    <div class="ld-mark"><span class="logo-pill"><img src="SkinNey.png" alt="" onerror="this.style.display='none'"></span></div>
+    <p class="ld-title">SkinNey</p>
+    <p class="ld-sub">Derma Clinic</p>
+    <span class="ld-line b"></span>
+  </div>
 </div>
-</header>
 
 <main>
-<section class="relative py-20 md:py-28 px-5 bg-gradient-to-br from-[#EDE4D9] via-[#F5EFE8] to-[#E8DFD4] overflow-hidden">
-<div class="absolute top-10 right-[10%] w-56 h-56 rounded-full bg-gold/10 blur-3xl"></div>
-<div class="max-w-4xl mx-auto text-center page-hero">
-<p class="text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Our Services</p>
-<h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-ink mb-4">Beauty &amp; Skin Wellness</h1>
-<p class="text-ink-soft text-sm md:text-base max-w-xl mx-auto">A dedicated space where advanced skin care meets relaxation, helping you achieve healthy, radiant skin and complete confidence.</p>
-</div>
+<!-- I · INTRO -->
+<section class="hero phero" data-sec="Treatments" id="intro">
+  <div class="fl" data-depth=".5" style="top:8%;left:48%;--s:280px;--dur:8s"><i class="orb"></i></div>
+  <div class="fl" data-depth=".9" style="bottom:12%;left:10%;--s:140px;--dur:7s;--dl:-3s"><i class="ring"></i></div>
+  <div class="fl" data-depth="1.1" style="top:22%;right:12%;--s:30px;--dur:6s;--dl:-2s"><i class="dia"></i></div>
+  <div class="fl" data-depth=".7" style="bottom:22%;right:26%;--s:26px;--dur:5.5s;--dl:-1s"><i class="drop"></i></div>
+  <div class="wrap hero-fade" style="width:100%;position:relative;z-index:2">
+    <p class="eyebrow rv" style="--d:.1s">The catalogue</p>
+    <h1 class="h1" style="margin-top:1.6rem;max-width:12ch">
+      <span class="ln rv" style="--d:.25s">Treatments,</span>
+      <span class="ln rv" style="--d:.45s"><em>curated.</em></span>
+    </h1>
+    <p class="lead rv" style="--d:.75s;margin-top:2rem">From regenerative therapies to precision lasers and artistic permanent make-up, every treatment is recommended after a consultation.</p>
+  </div>
+  <div class="cue"><span>Scroll</span><i></i></div>
 </section>
 
-<!-- SKIN -->
-<section class="py-16 md:py-24 px-5 bg-nude-50">
-<div class="max-w-6xl mx-auto">
-<div class="mb-10 reveal">
-<p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">01 · Skin</p>
-<h2 class="font-serif text-3xl md:text-4xl font-medium text-ink">Skin Treatments</h2>
-<p class="text-ink-muted text-sm mt-2 max-w-xl">Advanced skin treatments designed to restore radiance, improve skin health, and reveal your natural glow.</p>
-</div>
-<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal"><span class="text-gold text-xs font-medium">01</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Chemical Peel</h3><p class="text-ink-muted text-xs leading-relaxed">Improves skin texture, tone, and clarity by removing damaged skin layers.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:40ms"><span class="text-gold text-xs font-medium">02</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Yellow Peel</h3><p class="text-ink-muted text-xs leading-relaxed">Targets pigmentation, dullness, and uneven skin tone for a radiant complexion.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:80ms"><span class="text-gold text-xs font-medium">03</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Microneedling</h3><p class="text-ink-muted text-xs leading-relaxed">Stimulates collagen to improve texture, pores, scars, and overall rejuvenation.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:120ms"><span class="text-gold text-xs font-medium">04</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Mesotherapy</h3><p class="text-ink-muted text-xs leading-relaxed">Delivers essential nutrients to rejuvenate, hydrate, and refresh the skin.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:160ms"><span class="text-gold text-xs font-medium">05</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Skin Boosters</h3><p class="text-ink-muted text-xs leading-relaxed">Deep hydration that improves elasticity, glow, and overall skin quality.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:200ms"><span class="text-gold text-xs font-medium">06</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Glutathione Therapy</h3><p class="text-ink-muted text-xs leading-relaxed">Enhances skin radiance and promotes a brighter, more even complexion.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:240ms"><span class="text-gold text-xs font-medium">07</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">High Frequency Therapy</h3><p class="text-ink-muted text-xs leading-relaxed">Improves circulation and helps manage acne-prone skin concerns.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:280ms"><span class="text-gold text-xs font-medium">08</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Skin Lesion Removal</h3><p class="text-ink-muted text-xs leading-relaxed">Safe removal of skin tags, warts, and other unwanted growths.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:320ms"><span class="text-gold text-xs font-medium">09</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">MNRF</h3><p class="text-ink-muted text-xs leading-relaxed">Microneedle RF for skin tightening, scars, wrinkles, and laxity.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:360ms"><span class="text-gold text-xs font-medium">10</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Under Eye &amp; Pigmentation</h3><p class="text-ink-muted text-xs leading-relaxed">Specialized care for dark circles, dullness, and uneven pigmentation.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:400ms"><span class="text-gold text-xs font-medium">11</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Body Rejuvenation</h3><p class="text-ink-muted text-xs leading-relaxed">Body peels and targeted therapies for smoother skin texture.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:440ms"><span class="text-gold text-xs font-medium">12</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Skin Brightening &amp; Repair</h3><p class="text-ink-muted text-xs leading-relaxed">Customized treatments to restore health, radiance, and confidence.</p></div>
-</div>
-</div>
+<!-- II · CATALOGUE -->
+<section class="sec alt" data-sec="Catalogue" id="catalogue">
+  <div class="fl" data-depth=".6" style="top:4%;right:6%;--s:260px;--dur:9s"><i class="orb"></i></div>
+  <div class="wrap relative" style="z-index:2">
+    <div class="flex flex-wrap items-end justify-between gap-8">
+      <div>
+        <p class="eyebrow rv">Full catalogue</p>
+        <h2 class="h2 rv" style="--d:.15s;margin-top:1.4rem">Find your <em>treatment</em></h2>
+      </div>
+      <div class="flex flex-wrap gap-3 rv" style="--d:.3s" role="group" aria-label="Filter treatments">
+        <button class="fbtn on" data-f="all" type="button">All</button>
+        <button class="fbtn" data-f="rejuv" type="button">Rejuvenation</button>
+        <button class="fbtn" data-f="laser" type="button">Laser</button>
+        <button class="fbtn" data-f="makeup" type="button">Permanent Makeup</button>
+        <button class="fbtn" data-f="care" type="button">Hair &amp; Concerns</button>
+      </div>
+    </div>
+    <hr class="hair" style="margin:44px 0">
+
+    <div class="svcs grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="card svc lift rv" data-c="rejuv"><span class="num"></span><h3 class="h3">PRP</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Platelet-Rich Plasma</p><p>A treatment using your own plasma to support skin renewal, texture and glow, and to nourish the scalp.</p><a class="lnk" data-wa="PRP">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="rejuv"><span class="num"></span><h3 class="h3">GFC</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Growth Factor Concentrate</p><p>A concentrated growth-factor protocol designed to encourage revitalised-looking skin and a healthier scalp.</p><a class="lnk" data-wa="GFC">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="rejuv"><span class="num"></span><h3 class="h3">Chemical Peel</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Brighten &amp; Refine</p><p>Graded peels chosen for your skin type to improve tone, clarity and smoothness over a planned course.</p><a class="lnk" data-wa="a Chemical Peel">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="rejuv"><span class="num"></span><h3 class="h3">MNRF</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Microneedling Radiofrequency</p><p>Combines microneedling with radiofrequency energy to refine texture, soften scars and support firmness.</p><a class="lnk" data-wa="MNRF">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="rejuv"><span class="num"></span><h3 class="h3">HIFU</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Non-surgical Lifting</p><p>Focused ultrasound that lifts and tightens without incisions, ideal for jawline, cheeks and neck.</p><a class="lnk" data-wa="HIFU">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="rejuv"><span class="num"></span><h3 class="h3">Medi-Facial</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Hydrate &amp; Glow</p><p>A clinical facial that cleanses, exfoliates and hydrates, tailored to your skin's current needs.</p><a class="lnk" data-wa="a Medi-Facial">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="laser"><span class="num"></span><h3 class="h3">Laser Hair Reduction</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Precision Laser</p><p>Progressive reduction of unwanted hair with a planned series of comfortable laser sessions.</p><a class="lnk" data-wa="Laser Hair Reduction">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="laser"><span class="num"></span><h3 class="h3">Laser Skin Toning</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Tone &amp; Clarity</p><p>Targeted laser sessions to even out tone, address pigmentation concerns and refine overall clarity.</p><a class="lnk" data-wa="Laser Skin Toning">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="makeup"><span class="num"></span><h3 class="h3">Microblading</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Brow Artistry</p><p>Fine hair-stroke brows mapped to your face shape and natural growth for a soft, defined finish.</p><a class="lnk" data-wa="Microblading">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="makeup"><span class="num"></span><h3 class="h3">Lip Blush</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Lip Colour &amp; Definition</p><p>Sheer, buildable pigment that enhances natural lip colour and shape with a soft, lasting tint.</p><a class="lnk" data-wa="Lip Blush">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="care"><span class="num"></span><h3 class="h3">Hair Restoration Therapy</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">PRP / GFC for Hair</p><p>Scalp-focused regenerative sessions to support thicker, healthier-looking hair, following assessment.</p><a class="lnk" data-wa="Hair Restoration Therapy">Book on WhatsApp <span>→</span></a></article>
+      <article class="card svc lift rv" data-c="care"><span class="num"></span><h3 class="h3">Acne &amp; Scar Care</h3><p class="gold" style="margin:.3rem 0 0;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase">Clearer Skin</p><p>Medically guided plans combining treatments and skincare to manage acne and soften its marks.</p><a class="lnk" data-wa="Acne &amp; Scar Care">Book on WhatsApp <span>→</span></a></article>
+    </div>
+    <p class="mut rv" style="margin-top:2.6rem;font-size:.85rem">Treatment suitability, number of sessions and results vary from person to person. Ask us about any treatment not listed here.</p>
+  </div>
 </section>
 
-<!-- HAIR -->
-<section class="py-16 md:py-24 px-5 bg-[#F0E9E0]/50">
-<div class="max-w-6xl mx-auto">
-<div class="mb-10 reveal">
-<p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">02 · Hair</p>
-<h2 class="font-serif text-3xl md:text-4xl font-medium text-ink">Hair Treatments</h2>
-<p class="text-ink-muted text-sm mt-2 max-w-xl">Advanced hair treatments for stronger, healthier, fuller-looking, and naturally beautiful hair growth.</p>
-</div>
-<div class="grid sm:grid-cols-2 gap-4">
-<div class="svc-item bg-white rounded-xl p-6 border border-nude-200/70 reveal"><span class="text-gold text-xs font-medium">01</span><h3 class="font-serif text-xl font-medium mt-1 mb-2">PRP (Platelet-Rich Plasma)</h3><p class="text-ink-muted text-sm leading-relaxed">Uses your own growth factors to stimulate hair follicles, reduce hair fall, and promote healthier growth.</p><a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20PRP" class="inline-block mt-3 text-gold text-xs tracking-wide uppercase hover:underline">Book →</a></div>
-<div class="svc-item bg-white rounded-xl p-6 border border-nude-200/70 reveal" style="transition-delay:80ms"><span class="text-gold text-xs font-medium">02</span><h3 class="font-serif text-xl font-medium mt-1 mb-2">GFC (Growth Factor Concentrate)</h3><p class="text-ink-muted text-sm leading-relaxed">Advanced therapy delivering concentrated growth factors to strengthen follicles and improve density.</p><a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20GFC" class="inline-block mt-3 text-gold text-xs tracking-wide uppercase hover:underline">Book →</a></div>
-<div class="svc-item bg-white rounded-xl p-6 border border-nude-200/70 reveal" style="transition-delay:160ms"><span class="text-gold text-xs font-medium">03</span><h3 class="font-serif text-xl font-medium mt-1 mb-2">Mesotherapy for Hair</h3><p class="text-ink-muted text-sm leading-relaxed">Nourishes the scalp with essential nutrients to support stronger, healthier hair.</p><a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20Hair%20Mesotherapy" class="inline-block mt-3 text-gold text-xs tracking-wide uppercase hover:underline">Book →</a></div>
-<div class="svc-item bg-white rounded-xl p-6 border border-nude-200/70 reveal" style="transition-delay:240ms"><span class="text-gold text-xs font-medium">04</span><h3 class="font-serif text-xl font-medium mt-1 mb-2">Hair Care Solutions</h3><p class="text-ink-muted text-sm leading-relaxed">Personalized plans and professional products to maintain scalp health and hair quality.</p><a href="https://wa.me/919920706262?text=Hi,%20I%20want%20hair%20care%20consultation" class="inline-block mt-3 text-gold text-xs tracking-wide uppercase hover:underline">Book →</a></div>
-</div>
-</div>
+<!-- III · BEFORE YOUR VISIT -->
+<section class="sec" data-sec="Your Visit" id="visit-prep">
+  <div class="fl" data-depth=".7" style="top:8%;left:48%;--s:130px;--dur:7s"><i class="ring"></i></div>
+  <div class="wrap relative" style="z-index:2">
+    <div class="grid gap-16 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="eyebrow rv">Before you come</p>
+        <h2 class="h2 rv" style="--d:.15s;margin-top:1.4rem">Every journey begins with a <em>consultation</em></h2>
+      </div>
+      <div class="lg:col-span-7 stg">
+        <div class="tick"><p style="margin:0">We assess your skin, history and goals before recommending anything.</p></div>
+        <div class="tick"><p style="margin:0">You'll receive a clear plan: what, how many sessions, and aftercare.</p></div>
+        <div class="tick"><p style="margin:0">Mention any medications, allergies or recent treatments when you book.</p></div>
+        <div class="tick"><p style="margin:0">Questions between visits? Message us on WhatsApp.</p></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- AESTHETIC -->
-<section class="py-16 md:py-24 px-5 bg-nude-50">
-<div class="max-w-6xl mx-auto">
-<div class="mb-10 reveal">
-<p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">03 · Aesthetic</p>
-<h2 class="font-serif text-3xl md:text-4xl font-medium text-ink">Aesthetic Treatments</h2>
-<p class="text-ink-muted text-sm mt-2 max-w-xl">Enhance your natural beauty with advanced treatments for refined features and radiant results.</p>
-</div>
-<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal"><span class="text-gold text-xs font-medium">01</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">HIFU</h3><p class="text-ink-muted text-xs leading-relaxed">Non-invasive lift, tighten, and rejuvenate for a firmer appearance.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:40ms"><span class="text-gold text-xs font-medium">02</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Laser Hair Reduction</h3><p class="text-ink-muted text-xs leading-relaxed">Advanced laser for smoother, long-lasting hair reduction.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:80ms"><span class="text-gold text-xs font-medium">03</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Microblading</h3><p class="text-ink-muted text-xs leading-relaxed">Semi-permanent brows for natural, well-defined eyebrows.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:120ms"><span class="text-gold text-xs font-medium">04</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Lip Blush</h3><p class="text-ink-muted text-xs leading-relaxed">Enhances lip color and shape for a naturally tinted look.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:160ms"><span class="text-gold text-xs font-medium">05</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Lip Neutralisation</h3><p class="text-ink-muted text-xs leading-relaxed">Balances uneven lip tones and improves pigmentation.</p></div>
-<div class="svc-item bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:200ms"><span class="text-gold text-xs font-medium">06</span><h3 class="font-serif text-lg font-medium mt-1 mb-1">Ombre Brows</h3><p class="text-ink-muted text-xs leading-relaxed">Soft gradient-effect eyebrows for a polished natural look.</p></div>
-</div>
-</div>
+<!-- IV · BOOK -->
+<section class="sec alt" data-sec="Book" id="book" style="text-align:center">
+  <div class="fl" data-depth=".5" style="top:-80px;left:34%;--s:340px;--dur:9s"><i class="orb"></i></div>
+  <div class="fl" data-depth=".9" style="bottom:14%;left:12%;--s:28px;--dur:6s;--dl:-2s"><i class="drop"></i></div>
+  <div class="wrap relative" style="z-index:2">
+    <p class="eyebrow rv">Reserve</p>
+    <h2 class="h2 rv" style="--d:.15s;margin:1.4rem auto 2.2rem;max-width:16ch">Book your <em>consultation</em></h2>
+    <div class="flex flex-wrap justify-center gap-4 rv" style="--d:.3s">
+      <a class="btn btn-solid" data-wa=""><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Book on WhatsApp</a>
+      <a class="btn" href="tel:+919920706262">Call +91 9920706262</a>
+    </div>
+  </div>
 </section>
-
-<!-- CARE -->
-<section class="py-16 md:py-24 px-5 bg-[#F0E9E0]/50">
-<div class="max-w-6xl mx-auto">
-<div class="mb-10 reveal">
-<p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">04 · Care</p>
-<h2 class="font-serif text-3xl md:text-4xl font-medium text-ink">Skin &amp; Hair Care</h2>
-</div>
-<div class="grid sm:grid-cols-3 gap-5">
-<div class="card bg-white rounded-2xl p-6 border border-nude-200/70 reveal text-center"><div class="text-3xl mb-3">🧴</div><h3 class="font-serif text-lg font-medium mb-2">Professional Skin Care</h3><p class="text-ink-muted text-xs">Premium products to nourish, protect, and maintain radiant skin.</p></div>
-<div class="card bg-white rounded-2xl p-6 border border-nude-200/70 reveal text-center" style="transition-delay:80ms"><div class="text-3xl mb-3">💇</div><h3 class="font-serif text-lg font-medium mb-2">Professional Hair Care</h3><p class="text-ink-muted text-xs">High-quality solutions for scalp health and stronger hair.</p></div>
-<div class="card bg-white rounded-2xl p-6 border border-nude-200/70 reveal text-center" style="transition-delay:160ms"><div class="text-3xl mb-3">📋</div><h3 class="font-serif text-lg font-medium mb-2">Personalized Consultation</h3><p class="text-ink-muted text-xs">Expert guidance customized for your unique skin and hair needs.</p></div>
-</div>
-</div>
-</section>
-
-<section class="py-16 px-5 bg-nude-50 text-center">
-<div class="max-w-xl mx-auto reveal">
-<h2 class="font-serif text-3xl font-medium text-ink mb-3">A Warm Welcome for New Visitors</h2>
-<p class="text-ink-soft text-sm mb-6">Begin your skincare journey with expert care and personalized treatments from your first visit.</p>
-<a href="https://wa.me/919920706262" target="_blank" class="btn-g px-8 py-3.5 rounded-full text-sm font-medium inline-block">Book An Appointment Now</a>
-</div>
-</section>
-
-<footer class="border-t border-nude-200 bg-[#F0E9E0]/50 py-10 px-5">
-<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-5">
-<a href="index.html"><img src="SkinNey.png" alt="SkinNey" class="h-9 w-auto"/></a>
-<div class="flex gap-6 text-[11px] text-ink-muted">
-<a href="index.html" class="hover:text-gold">Home</a>
-<a href="about.html" class="hover:text-gold">About</a>
-<a href="contact.html" class="hover:text-gold">Contact</a>
-</div>
-<p class="text-[10px] text-ink-muted/50">© 2026 SkinNey Derma Clinic</p>
-</div>
-</footer>
 </main>
-<script>
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
-</script>
+
+<footer id="site-footer"></footer>
+<script src="site.js"></script>
 </body>
 </html>
