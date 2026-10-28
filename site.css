@@ -31,7 +31,7 @@ a{color:inherit;text-decoration:none}
 .eyebrow{display:inline-flex;align-items:center;gap:14px;letter-spacing:.32em;text-transform:uppercase;font-size:.7rem;font-weight:500;color:var(--gold)}
 .eyebrow::before{content:'';width:42px;height:1px;background:var(--gold)}
 .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
-@media(min-width:1024px){.wrap{padding-left:128px}}
+@media(min-width:900px){.wrap{padding-left:128px}}
 .sec{position:relative;padding:clamp(80px,12vw,160px) 0;overflow:hidden}
 .alt{background:var(--bg2)}
 
@@ -61,11 +61,16 @@ a{color:inherit;text-decoration:none}
 .hdr.sc{background:var(--hdr);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:10px 0}
 .hdr-in{max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
 .logo{display:flex;align-items:center}
-.logo-pill{display:inline-flex;align-items:center;background:rgba(245,239,232,.94);border-radius:999px;padding:5px 16px;min-height:44px}
-.logo-pill img{height:34px;width:auto}
+.logo-pill{display:inline-flex;align-items:center;background:rgba(245,239,232,.96);border-radius:16px;padding:4px 10px}
+:root:not([data-theme="night"]) .logo-pill{background:transparent;padding:0}
+.logo-pill img{height:52px;width:auto;mix-blend-mode:multiply;transition:height .7s var(--ease)}
+@media(min-width:900px){.logo-pill img{height:66px}}
+.hdr.sc .logo-pill img{height:42px}
+@media(min-width:900px){.hdr.sc .logo-pill img{height:52px}}
+.ld-mark .logo-pill img{height:140px}
 .logo-fb{display:none;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#2C2A28;letter-spacing:.02em}
 .nav{display:none;gap:2.4rem}
-@media(min-width:1024px){.nav{display:flex}}
+@media(min-width:900px){.nav{display:flex}}
 .nl{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;position:relative;padding:.4rem 0}
 .nl::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
 .nl:hover::after,.nl.on::after{transform:scaleX(1)}
@@ -80,7 +85,7 @@ a{color:inherit;text-decoration:none}
 .burger span{position:absolute;width:18px;height:1px;background:currentColor;transition:transform .8s var(--ease),opacity .5s}
 .burger span:nth-child(1){transform:translateY(-4px)}.burger span:nth-child(2){transform:translateY(4px)}
 .burger.open span:nth-child(1){transform:rotate(45deg)}.burger.open span:nth-child(2){transform:rotate(-45deg)}
-@media(min-width:1024px){.burger{display:none}}
+@media(min-width:900px){.burger{display:none}}
 .hdr-cta{display:none}
 @media(min-width:768px){.hdr-cta{display:inline-flex}}
 .mnav{position:fixed;inset:0;z-index:55;background:var(--bg);display:flex;flex-direction:column;justify-content:center;gap:.4rem;padding:2rem clamp(24px,8vw,64px);opacity:0;visibility:hidden;transition:opacity .8s var(--ease),visibility .8s}
@@ -138,8 +143,8 @@ a{color:inherit;text-decoration:none}
 .drop{width:var(--s,26px);height:var(--s,26px);border-radius:0 50% 50% 50%;rotate:-45deg;background:linear-gradient(135deg,var(--gold),transparent);opacity:.75}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:130px 0 90px;overflow:hidden}
-.phero{min-height:78vh;min-height:78svh;padding:150px 0 90px}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:165px 0 90px;overflow:hidden}
+.phero{min-height:78vh;min-height:78svh;padding:180px 0 90px}
 .chip{position:absolute;z-index:3;background:var(--hdr);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;padding:.7rem 1.2rem;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.7rem;box-shadow:var(--shadow)}
 .chip::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(196,163,90,.25)}
 .cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mut)}
@@ -154,7 +159,7 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- Side index ---------- */
 .sidx{position:fixed;left:clamp(14px,2vw,34px);top:50%;transform:translateY(-50%);z-index:40;display:none;flex-direction:column;gap:16px}
-@media(min-width:1024px){.sidx{display:flex}}
+@media(min-width:900px){.sidx{display:flex}}
 .sidx a{position:relative;display:flex;align-items:center;gap:12px;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--mut);opacity:.7;padding:2px 0;transition:color .6s var(--ease),opacity .6s var(--ease)}
 .sidx a::before{content:'';width:12px;height:1px;background:currentColor;transition:width 1s var(--ease)}
 .sidx a.on{color:var(--gold);opacity:1}
@@ -208,3 +213,12 @@ select.fld option{background:var(--bg);color:var(--tx)}
   .rv,.hair{opacity:1!important;transform:none!important}
   .fl>i,.marq-t{animation:none!important}
 }
+
+/* ---------- Logo medallion (brand placeholder for photography) ---------- */
+.medal{position:absolute;z-index:1;left:50%;top:50%;width:min(74%,360px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 28%,#fffaf0,#efe1c8);display:grid;place-items:center;box-shadow:0 34px 70px -30px rgba(70,46,10,.55),inset 0 0 0 1px rgba(196,163,90,.45)}
+.medal::before{content:'';position:absolute;inset:-16px;border:1px solid var(--gold);border-radius:50%;opacity:.55}
+.medal::after{content:'';position:absolute;inset:-38px;border:1px dashed var(--gold);border-radius:50%;opacity:.35;animation:spin 70s linear infinite}
+.medal img{position:static;inset:auto;width:80%;height:auto;object-fit:contain;mix-blend-mode:multiply}
+@keyframes spin{to{transform:rotate(360deg)}}
+.chipwrap{left:10px}
+@media(min-width:900px){.chipwrap{left:-8%}}
