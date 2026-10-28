@@ -3,7 +3,7 @@
   'use strict';
   const WA = '919920706262';
   const root = document.documentElement;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = root.classList.contains('rm'); // set in <head> only when the OS requests reduced motion (override: add ?motion=full to the URL once)
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const page = document.body.dataset.page || '';
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
@@ -233,7 +233,6 @@
     setTimeout(() => el.classList.add('done'), (d + extra + 1.3) * 1000);
   };
   const startReveal = () => {
-    if (reduce) { document.querySelectorAll('.rv,.hair').forEach((e) => e.classList.add('in', 'done')); return; }
     const io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
     }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
@@ -242,7 +241,7 @@
 
   /* ---------- Loader ---------- */
   const loader = document.getElementById('loader');
-  const minWait = new Promise((r) => setTimeout(r, reduce ? 150 : 2700));
+  const minWait = new Promise((r) => setTimeout(r, reduce ? 900 : 2700));
   const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
   const cap = new Promise((r) => setTimeout(r, 4500));
   Promise.race([Promise.all([minWait, loaded]), cap]).then(() => {
