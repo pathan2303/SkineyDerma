@@ -52,6 +52,7 @@
         <div><h4>Reach us</h4><ul style="list-style:none;padding:0;margin:0">
           <li><a href="tel:+919920706262">+91 9920706262</a></li>
           <li><a href="mailto:skinneyderma@gmail.com">skinneyderma@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/skinney_mumbai/" target="_blank" rel="noopener">Instagram @skinney_mumbai</a></li>
           <li><a data-wa="" class="lnk" style="margin-top:.6rem">Book on WhatsApp <span>→</span></a></li></ul></div>
       </div>
       <hr class="hair" style="margin:56px 0 22px">
@@ -106,6 +107,101 @@
   mnav.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
+  /* ---------- Diwali offers (edit here) ---------- */
+  const OFFERS = {
+    active: true,          // set false to remove the pop-up, button, section and price tags everywhere
+    until: null,           // optional last day, e.g. '2026-11-15' (offers auto-hide after it)
+    groups: [
+      { t: 'Festive Facials', s: 'Cleanse · Hydrate · Rejuvenate', i: [
+        ['Hydra Boost Facial', 'Deep cleanse & glow', '₹2,399'],
+        ['Advanced Medi Facial', 'Brighten & rejuvenate', '₹2,299'],
+        ['Red Wine Facial', 'Anti-ageing & radiance', '₹2,599']] },
+      { t: 'Skin Rejuvenation', s: 'Renew · Repair · Glow', i: [
+        ['Chemical Peel', 'Clear & bright skin', '₹1,499'],
+        ['Microneedling', 'Smoother & firmer skin', '₹3,000'],
+        ['PDRN Skin Booster', 'Deep repair & radiance', '₹7,999']] },
+      { t: 'Hair Restoration', s: 'Stronger · Healthier · Thicker Hair', i: [
+        ['PRP Hair Treatment', 'Reduce hair fall', '₹3,500'],
+        ['GFC Hair Treatment', 'Stimulate hair growth', '₹4,000'],
+        ['Exosome Hair Restoration', 'Advanced hair repair', '₹8,999']] },
+      { t: 'Permanent Makeup', s: 'Natural · Long-lasting · Beautiful', i: [
+        ['Lip Blush', 'Natural pink lips', '₹4,999'],
+        ['Microblading', 'Defined & natural brows', '₹4,999']] },
+      { t: 'Diwali IV Drip Packages', s: 'Inner Health · Outer Glow — 6 sessions special offer', i: [
+        ['Celestial Glow Drip', 'Brighter skin · Even tone · Radiant you · 6 sessions', '₹32,999'],
+        ['Radiance Drip', 'Skin brightening · Antioxidant support · Overall wellness · 6 sessions', '₹28,999'],
+        ['Detox Drip', 'Detoxify · Recharge · Feel refreshed · 6 sessions', '₹26,999']] },
+    ],
+  };
+  const offerOn = OFFERS.active && (!OFFERS.until || Date.now() <= new Date(OFFERS.until + 'T23:59:59+05:30').getTime());
+  const sparkle = '<svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>';
+  let openDw = () => {};
+  if (!offerOn) {
+    document.querySelectorAll('[data-offers-sec],[data-offer-only]').forEach((e) => e.remove());
+  } else {
+    const rows = (g) => g.i.map(([n, d, p]) => `<div class="orow"><div><b>${n}</b><small>${d}</small></div><span class="pr">${p}</span></div>`).join('');
+    document.querySelectorAll('[data-offers]').forEach((el) => {
+      el.innerHTML = OFFERS.groups.map((g) => `<article class="card lift"><h3 class="h3">${g.t}</h3><p class="osub">${g.s}</p>${rows(g)}</article>`).join('');
+    });
+    document.querySelectorAll('.svc[data-offer]').forEach((c) => {
+      const l = c.querySelector('.lnk');
+      if (l) l.insertAdjacentHTML('beforebegin', `<span class="otag">Diwali offer · ${c.dataset.offer}</span>`);
+    });
+
+    const embers = Array.from({ length: 22 }, () => `<i style="--x:${(Math.random() * 100).toFixed(1)}%;--s:${(2 + Math.random() * 4).toFixed(1)}px;--t:${(7 + Math.random() * 7).toFixed(1)}s;--d:${(-Math.random() * 12).toFixed(1)}s"></i>`).join('');
+    const groups = OFFERS.groups.map((g) => `<div class="dw-g rvd"><h4>${g.t}</h4><small class="s">${g.s}</small>${g.i.map(([n, d, p]) => `<div class="dw-r"><div><b>${n}</b><small>${d}</small></div><span class="p">${p}</span></div>`).join('')}</div>`).join('');
+    const dw = document.createElement('div');
+    dw.className = 'dw';
+    dw.id = 'dw';
+    dw.setAttribute('role', 'dialog');
+    dw.setAttribute('aria-modal', 'true');
+    dw.setAttribute('aria-labelledby', 'dwT');
+    dw.innerHTML = `<div class="dw-bg" data-close></div><span class="dw-line"></span>
+      <div class="dw-card"><div class="dw-embers">${embers}</div>
+        <button class="dw-x" type="button" aria-label="Close offers" data-close><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <div class="dw-head">
+          <p class="dw-eye rvd">Exclusive festive offers</p>
+          <h2 class="dw-title rvd" id="dwT"><span>Diwali</span><em>Glow &amp; Beauty Fest</em></h2>
+          <p class="dw-sub rvd">Brighter Skin &nbsp;✦&nbsp; Healthier Hair &nbsp;✦&nbsp; Confident You</p>
+        </div>
+        <div class="dw-scroll">${groups}</div>
+        <div class="dw-foot rvd">
+          <div class="row"><a class="btn btn-solid" id="dwWa" target="_blank" rel="noopener">${chat}Book on WhatsApp</a><a class="btn" href="tel:+919920706262">Call 9920706262</a></div>
+          <p>T&amp;C apply. Treatments are subject to professional assessment.</p>
+          <button class="dw-later" type="button" data-close>Maybe later</button>
+        </div>
+      </div>`;
+    document.body.append(dw);
+    dw.querySelectorAll('.rvd').forEach((e, i) => e.style.setProperty('--i', i));
+    dw.querySelector('#dwWa').href = wa("Hello SkinNey Derma Clinic, I'd like to know more about the Diwali Glow & Beauty Fest offers.");
+
+    const fab = document.createElement('button');
+    fab.type = 'button';
+    fab.className = 'dw-fab';
+    fab.setAttribute('data-dw', '');
+    fab.innerHTML = sparkle + 'Diwali Offers';
+    document.body.append(fab);
+
+    let last = null;
+    openDw = () => {
+      last = document.activeElement;
+      dw.classList.add('on');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => dw.querySelector('.dw-x').focus({ preventScroll: true }), 500);
+      try { sessionStorage.setItem('skinney-dw', '1'); } catch (e) {}
+    };
+    const closeDw = () => {
+      dw.classList.remove('on');
+      document.body.style.overflow = '';
+      if (last && last.focus) last.focus({ preventScroll: true });
+    };
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('[data-dw]')) openDw();
+      else if (e.target.closest('[data-close]')) closeDw();
+    });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && dw.classList.contains('on')) closeDw(); });
+  }
+
   /* ---------- Sticky numbered side index ---------- */
   const secs = [...document.querySelectorAll('[data-sec]')];
   if (secs.length > 1) {
@@ -154,6 +250,9 @@
     root.classList.add('ready');
     setTimeout(startReveal, reduce ? 0 : 650);
     setTimeout(() => loader && loader.remove(), 2000);
+    let seen = false;
+    try { seen = sessionStorage.getItem('skinney-dw') === '1'; } catch (e) {}
+    if (offerOn && !seen) setTimeout(openDw, reduce ? 500 : 3000);
   });
 
   /* ---------- Mouse parallax (weightless, eased) ---------- */
