@@ -1,474 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkinNey Derma Clinic | Mira Road East</title>
-  <meta name="description" content="SkinNey Derma Clinic — Healthy Skin. Renewed Confidence. Mira Road East. +91 9920706262" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            nude: { 50:'#FBF8F5', 100:'#F5EFE8', 200:'#EDE4D9', 300:'#D9CBB8', 400:'#C4B09A', 500:'#A8927A' },
-            gold: { DEFAULT:'#C4A35A', light:'#D4B87A', dark:'#A88B3E' },
-            ink: { DEFAULT:'#2C2A28', soft:'#5A5550', muted:'#8A847C' }
-          },
-          fontFamily: {
-            serif: ['Cormorant Garamond','Georgia','serif'],
-            sans: ['Inter','system-ui','sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    :root { --ease: cubic-bezier(0.16,1,0.3,1); }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin:0; font-family:Inter,system-ui,sans-serif; background:#FBF8F5; color:#2C2A28; overflow-x:hidden; }
-    .font-serif { font-family:'Cormorant Garamond',Georgia,serif; }
-
-    /* LOADER */
-    #loader {
-      position:fixed; inset:0; z-index:9999; background:#E8DFD4;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      transition:opacity .9s var(--ease), visibility .9s;
-    }
-    #loader.done { opacity:0; visibility:hidden; pointer-events:none; }
-    .loader-logo { width:120px; opacity:0; animation:logoIn 1.2s var(--ease) .2s forwards; }
-    .loader-text { margin-top:1.5rem; opacity:0; animation:logoIn 1s var(--ease) .7s forwards; }
-    .loader-bar {
-      width:80px; height:1px; background:rgba(196,163,90,.3);
-      margin-top:2rem; position:relative; overflow:hidden; opacity:0;
-      animation:logoIn .6s var(--ease) 1s forwards;
-    }
-    .loader-bar span {
-      position:absolute; left:0; top:0; height:100%; width:0; background:#C4A35A;
-      animation:loadBar 1.4s var(--ease) 1.1s forwards;
-    }
-    @keyframes logoIn {
-      from { opacity:0; transform:translateY(18px) scale(.96); }
-      to { opacity:1; transform:translateY(0) scale(1); }
-    }
-    @keyframes loadBar { from { width:0; } to { width:100%; } }
-
-    /* HERO KINETIC */
-    .hero-word {
-      display:inline-block; opacity:0; transform:translateY(40px);
-      animation:wordUp .9s var(--ease) forwards; animation-play-state:paused;
-    }
-    .hero-word.play { animation-play-state:running; }
-    @keyframes wordUp { to { opacity:1; transform:translateY(0); } }
-    .hero-sub, .hero-cta {
-      opacity:0; transform:translateY(20px);
-      animation:wordUp .8s var(--ease) forwards; animation-play-state:paused;
-    }
-    .hero-sub.play, .hero-cta.play { animation-play-state:running; }
-    .hero-img-wrap {
-      opacity:0; transform:scale(1.06);
-      animation:imgIn 1.4s var(--ease) forwards; animation-play-state:paused;
-    }
-    .hero-img-wrap.play { animation-play-state:running; }
-    @keyframes imgIn { to { opacity:1; transform:scale(1); } }
-
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    .float-y { animation:floatY 5.5s ease-in-out infinite; }
-
-    .reveal {
-      opacity:0; transform:translateY(32px);
-      transition:opacity .9s var(--ease), transform .9s var(--ease);
-    }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-
-    .card { transition:transform .5s var(--ease), box-shadow .5s var(--ease); }
-    .card:hover { transform:translateY(-6px); box-shadow:0 22px 44px -16px rgba(44,42,40,.12); }
-
-    .ticker-track { animation:ticker 38s linear infinite; white-space:nowrap; }
-    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-
-    .nav-a { position:relative; }
-    .nav-a::after {
-      content:''; position:absolute; left:0; bottom:-3px; width:0; height:1px;
-      background:#C4A35A; transition:width .35s var(--ease);
-    }
-    .nav-a:hover::after, .nav-a.active::after { width:100%; }
-
-    .btn-gold {
-      background:#C4A35A; color:#fff;
-      transition:background .3s, transform .3s var(--ease), box-shadow .3s;
-    }
-    .btn-gold:hover {
-      background:#A88B3E; transform:translateY(-1px);
-      box-shadow:0 10px 24px -8px rgba(196,163,90,.45);
-    }
-    .btn-line {
-      border:1px solid #C4A35A; color:#C4A35A;
-      transition:background .3s, color .3s, transform .3s var(--ease);
-    }
-    .btn-line:hover { background:#C4A35A; color:#fff; transform:translateY(-1px); }
-
-    .ba-slider { touch-action:none; user-select:none; }
-    #ba-handle { transition:none; }
-
-    ::-webkit-scrollbar { width:5px; }
-    ::-webkit-scrollbar-track { background:#F5EFE8; }
-    ::-webkit-scrollbar-thumb { background:#D9CBB8; border-radius:3px; }
-
-    @media (prefers-reduced-motion:reduce) {
-      #loader { display:none!important; }
-      .hero-word,.hero-sub,.hero-cta,.hero-img-wrap,.reveal,.float-y,.ticker-track {
-        animation:none!important; opacity:1!important; transform:none!important;
-      }
-    }
-  </style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SkinNey Derma Clinic | Home — Mira Road East</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{nude:{50:'#FBF8F5',100:'#F5EFE8',200:'#EDE4D9',300:'#D9CBB8'},gold:{DEFAULT:'#C4A35A',dark:'#A88B3E'},ink:{DEFAULT:'#2C2A28',soft:'#5A5550',muted:'#8A847C'}},fontFamily:{serif:['Cormorant Garamond','Georgia','serif'],sans:['Inter','system-ui','sans-serif']}}}}</script>
+<style>
+:root{--e:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#FBF8F5;color:#2C2A28;overflow-x:hidden}
+.font-serif{font-family:'Cormorant Garamond',Georgia,serif}
+#loader{position:fixed;inset:0;z-index:9999;background:#E8DFD4;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s var(--e),visibility .9s}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{width:130px;height:auto;opacity:0;animation:in 1.2s var(--e) .2s forwards}
+.loader-text{margin-top:1.25rem;opacity:0;animation:in 1s var(--e) .65s forwards;text-align:center}
+.loader-bar{width:72px;height:1px;background:rgba(196,163,90,.25);margin-top:1.75rem;position:relative;overflow:hidden;opacity:0;animation:in .5s var(--e) .95s forwards}
+.loader-bar span{position:absolute;inset:0 auto 0 0;width:0;background:#C4A35A;animation:bar 1.3s var(--e) 1.05s forwards}
+@keyframes in{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes bar{to{width:100%}}
+.hw{display:inline-block;opacity:0;transform:translateY(36px);animation:up .85s var(--e) forwards;animation-play-state:paused}
+.hw.play{animation-play-state:running}
+@keyframes up{to{opacity:1;transform:none}}
+.hs,.hc{opacity:0;transform:translateY(18px);animation:up .75s var(--e) forwards;animation-play-state:paused}
+.hs.play,.hc.play{animation-play-state:running}
+.hi{opacity:0;transform:scale(1.05);animation:img 1.3s var(--e) forwards;animation-play-state:paused}
+.hi.play{animation-play-state:running}
+@keyframes img{to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--e),transform .85s var(--e)}.reveal.on{opacity:1;transform:none}
+.card{transition:transform .5s var(--e),box-shadow .5s}.card:hover{transform:translateY(-8px);box-shadow:0 24px 48px -18px rgba(44,42,40,.14)}
+.ticker{animation:tick 36s linear infinite;white-space:nowrap}
+@keyframes tick{to{transform:translateX(-50%)}}
+.nav-a{position:relative}.nav-a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1px;background:#C4A35A;transition:width .3s var(--e)}.nav-a:hover::after,.nav-a.active::after{width:100%}
+.btn-g{background:#C4A35A;color:#fff;transition:background .3s,transform .3s var(--e)}.btn-g:hover{background:#A88B3E;transform:translateY(-2px)}
+.btn-l{border:1px solid #C4A35A;color:#C4A35A;transition:all .3s var(--e)}.btn-l:hover{background:#C4A35A;color:#fff;transform:translateY(-2px)}
+@keyframes fy{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.fy{animation:fy 5s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){#loader{display:none!important}.hw,.hs,.hc,.hi,.reveal,.fy,.ticker{animation:none!important;opacity:1!important;transform:none!important}}
+</style>
 </head>
 <body>
+<div id="loader">
+<img src="SkinNey.png" alt="SkinNey" class="loader-logo"/>
+<div class="loader-text"><p class="font-serif text-2xl text-[#8B7355]">SkinNey</p><p class="text-[10px] tracking-[0.35em] uppercase text-[#A8927A] mt-1">Derma Clinic</p></div>
+<div class="loader-bar"><span></span></div>
+</div>
 
-  <!-- LOADER -->
-  <div id="loader">
-    <svg class="loader-logo" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#E8D5A3"/>
-          <stop offset="50%" stop-color="#C4A35A"/>
-          <stop offset="100%" stop-color="#A88B3E"/>
-        </linearGradient>
-      </defs>
-      <path d="M118 28 C95 28 78 48 78 75 C78 95 88 110 100 118 C90 125 82 140 82 158 C82 185 100 205 125 205 C145 205 160 190 160 165 C160 140 145 125 130 118 C145 105 155 88 155 68 C155 42 140 28 118 28Z" stroke="url(#g)" stroke-width="3.5" fill="none"/>
-      <path d="M118 28 C100 20 75 35 70 60 C65 85 78 100 95 108" stroke="url(#g)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <path d="M125 32 C140 25 155 40 158 58" stroke="url(#g)" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <path d="M55 95 L55 175 M55 95 L95 175 M95 95 L95 175" stroke="url(#g)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="loader-text text-center">
-      <p class="font-serif text-2xl tracking-wide text-[#8B7355]">SkinNey</p>
-      <p class="text-[10px] tracking-[0.35em] uppercase text-[#A8927A] mt-1">Derma Clinic</p>
-    </div>
-    <div class="loader-bar"><span></span></div>
-  </div>
+<div class="bg-ink text-nude-50 text-[11px] h-8 overflow-hidden"><div class="ticker flex items-center h-full">
+<span class="mx-8">✦ New Patient Offer — 20% off first PRP / GFC</span><span class="mx-8">📍 Mira Road East · All 7 days 11 AM – 9 PM</span><span class="mx-8">📞 +91 99207 06262</span>
+<span class="mx-8">✦ New Patient Offer — 20% off first PRP / GFC</span><span class="mx-8">📍 Mira Road East · All 7 days 11 AM – 9 PM</span><span class="mx-8">📞 +91 99207 06262</span>
+</div></div>
 
-  <!-- TICKER -->
-  <div class="bg-ink text-nude-50 text-[11px] tracking-wide h-8 overflow-hidden">
-    <div class="ticker-track flex items-center h-full">
-      <span class="mx-8">✦&nbsp;&nbsp;New Patient Offer — 20% off first PRP / GFC</span>
-      <span class="mx-8">📍&nbsp;&nbsp;Mira Road East · Open all 7 days 11 AM – 9 PM</span>
-      <span class="mx-8">✦&nbsp;&nbsp;Free consultation with Hair Regrowth packages</span>
-      <span class="mx-8">📞&nbsp;&nbsp;+91 99207 06262 · WhatsApp available</span>
-      <span class="mx-8">✦&nbsp;&nbsp;New Patient Offer — 20% off first PRP / GFC</span>
-      <span class="mx-8">📍&nbsp;&nbsp;Mira Road East · Open all 7 days 11 AM – 9 PM</span>
-      <span class="mx-8">✦&nbsp;&nbsp;Free consultation with Hair Regrowth packages</span>
-      <span class="mx-8">📞&nbsp;&nbsp;+91 99207 06262 · WhatsApp available</span>
-    </div>
-  </div>
+<header class="sticky top-0 z-50 bg-nude-50/95 backdrop-blur-md border-b border-nude-200/50">
+<div class="max-w-6xl mx-auto px-5 h-16 md:h-[68px] flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2.5">
+<img src="SkinNey.png" alt="SkinNey" class="h-10 w-auto"/>
+</a>
+<nav class="hidden md:flex items-center gap-7 text-[11px] tracking-[0.12em] uppercase text-ink-soft">
+<a href="index.html" class="nav-a active">Home</a>
+<a href="about.html" class="nav-a">About</a>
+<a href="services.html" class="nav-a">Services</a>
+<a href="contact.html" class="nav-a">Contact</a>
+</nav>
+<a href="https://wa.me/919920706262" target="_blank" class="btn-g text-[11px] tracking-[0.1em] uppercase px-5 py-2.5 rounded-full font-medium">Book Now</a>
+</div>
+</header>
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 bg-nude-50/92 backdrop-blur-md border-b border-nude-200/50">
-    <div class="max-w-6xl mx-auto px-5 h-16 md:h-[70px] flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2">
-        <span class="font-serif text-2xl font-medium text-ink tracking-tight">SkinNey</span>
-        <span class="hidden sm:block text-[9px] tracking-[0.18em] uppercase text-ink-muted border-l border-nude-300 pl-2 leading-tight">Derma<br>Clinic</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-[11px] tracking-[0.14em] uppercase text-ink-soft">
-        <a href="#home" class="nav-a active">Home</a>
-        <a href="#services" class="nav-a">Services</a>
-        <a href="#results" class="nav-a">Results</a>
-        <a href="#visit" class="nav-a">Visit</a>
-      </nav>
-      <a href="https://wa.me/919920706262" target="_blank" rel="noopener" class="btn-gold text-[11px] tracking-[0.12em] uppercase px-5 py-2.5 rounded-full font-medium">Book Now</a>
-    </div>
-  </header>
+<main>
+<section class="relative min-h-[88vh] flex items-center overflow-hidden bg-gradient-to-br from-[#EDE4D9] via-[#F5EFE8] to-[#E8DFD4]">
+<div class="absolute top-16 right-[8%] w-64 h-64 rounded-full bg-gold/10 blur-3xl"></div>
+<div class="max-w-6xl mx-auto px-5 w-full grid lg:grid-cols-2 gap-12 items-center py-14">
+<div>
+<p class="hs text-gold text-[11px] tracking-[0.3em] uppercase mb-5" style="animation-delay:.1s">Welcome to SkinNey Derma Clinic</p>
+<h1 class="font-serif leading-[1.02] mb-6">
+<span class="hw block text-4xl sm:text-5xl md:text-6xl font-medium text-ink" style="animation-delay:.25s">Healthy Skin.</span>
+<span class="hw block text-4xl sm:text-5xl md:text-6xl font-medium italic text-ink/90" style="animation-delay:.4s">Renewed</span>
+<span class="hw block text-4xl sm:text-5xl md:text-6xl font-medium text-ink" style="animation-delay:.55s">Confidence</span>
+</h1>
+<p class="hs text-ink-soft text-sm md:text-[15px] leading-relaxed max-w-md mb-8" style="animation-delay:.7s">Experience personalized skin, hair, and aesthetic care at SkinNey Derma Clinic in Mira Road East, designed to help you achieve healthy, radiant, and naturally beautiful results.</p>
+<div class="hc flex flex-wrap gap-3" style="animation-delay:.85s">
+<a href="https://wa.me/919920706262" target="_blank" class="btn-g px-7 py-3.5 rounded-full text-sm font-medium">Book Appointment</a>
+<a href="services.html" class="btn-l px-7 py-3.5 rounded-full text-sm font-medium">Our Services</a>
+</div>
+</div>
+<div class="relative hidden md:block">
+<div class="hi relative aspect-[4/5] max-w-md ml-auto rounded-2xl overflow-hidden shadow-2xl" style="animation-delay:.45s">
+<img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&q=85" alt="Healthy skin" class="w-full h-full object-cover"/>
+</div>
+<div class="absolute -left-3 bottom-14 bg-white/95 backdrop-blur rounded-xl shadow-lg p-4 border border-nude-200 fy">
+<p class="text-[9px] tracking-[0.2em] uppercase text-gold mb-0.5">Mira Road East</p>
+<p class="font-serif text-xl text-ink">Trusted Care</p>
+</div>
+</div>
+</div>
+</section>
 
-  <main>
+<section class="py-20 md:py-28 px-5 bg-nude-50">
+<div class="max-w-6xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-14 reveal">
+<p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-3">Expertise Areas</p>
+<h2 class="font-serif text-3xl md:text-4xl font-medium text-ink leading-snug">Allow your skin, hair, and confidence to experience a journey of healthy, radiant beauty.</h2>
+</div>
+<div class="grid sm:grid-cols-3 gap-6">
+<div class="card bg-white rounded-2xl p-7 border border-nude-200/70 reveal"><div class="w-11 h-11 rounded-full bg-nude-100 flex items-center justify-center text-xl mb-4">✨</div><h3 class="font-serif text-xl font-medium mb-2">Advanced Skin Care</h3><p class="text-ink-muted text-sm leading-relaxed">Restore your skin’s health, glow, and texture with personalized dermatology treatments.</p></div>
+<div class="card bg-white rounded-2xl p-7 border border-nude-200/70 reveal" style="transition-delay:80ms"><div class="w-11 h-11 rounded-full bg-nude-100 flex items-center justify-center text-xl mb-4">🌿</div><h3 class="font-serif text-xl font-medium mb-2">Hair Restoration</h3><p class="text-ink-muted text-sm leading-relaxed">Strengthen and rejuvenate your hair with advanced growth and scalp care solutions.</p></div>
+<div class="card bg-white rounded-2xl p-7 border border-nude-200/70 reveal" style="transition-delay:160ms"><div class="w-11 h-11 rounded-full bg-nude-100 flex items-center justify-center text-xl mb-4">💎</div><h3 class="font-serif text-xl font-medium mb-2">Aesthetic Enhancements</h3><p class="text-ink-muted text-sm leading-relaxed">Enhance your natural beauty with safe, modern aesthetic procedures.</p></div>
+</div>
+</div>
+</section>
 
-    <!-- HERO -->
-    <section id="home" class="relative min-h-[88vh] flex items-center overflow-hidden bg-gradient-to-br from-[#EDE4D9] via-[#F5EFE8] to-[#E8DFD4]">
-      <div class="absolute top-16 right-[8%] w-64 h-64 rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
-      <div class="absolute bottom-8 left-[6%] w-48 h-48 rounded-full bg-nude-300/30 blur-3xl pointer-events-none"></div>
-      <div class="max-w-6xl mx-auto px-5 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-14 md:py-20">
-        <div>
-          <p class="hero-sub text-gold text-[11px] tracking-[0.3em] uppercase mb-5" style="animation-delay:0.1s">Welcome to SkinNey Derma Clinic</p>
-          <h1 class="font-serif leading-[1.02] mb-6">
-            <span class="hero-word block text-4xl sm:text-5xl md:text-6xl lg:text-[3.6rem] font-medium text-ink" style="animation-delay:0.25s">Healthy Skin.</span>
-            <span class="hero-word block text-4xl sm:text-5xl md:text-6xl lg:text-[3.6rem] font-medium italic text-ink/90" style="animation-delay:0.4s">Renewed</span>
-            <span class="hero-word block text-4xl sm:text-5xl md:text-6xl lg:text-[3.6rem] font-medium text-ink" style="animation-delay:0.55s">Confidence</span>
-          </h1>
-          <p class="hero-sub text-ink-soft text-sm md:text-[15px] leading-relaxed max-w-md mb-8" style="animation-delay:0.7s">
-            Experience personalized skin, hair, and aesthetic care at SkinNey Derma Clinic in Mira Road East — designed for healthy, radiant, naturally beautiful results.
-          </p>
-          <div class="hero-cta flex flex-wrap gap-3" style="animation-delay:0.85s">
-            <a href="https://wa.me/919920706262" target="_blank" rel="noopener" class="btn-gold px-7 py-3.5 rounded-full text-sm font-medium">Book Appointment</a>
-            <a href="#services" class="btn-line px-7 py-3.5 rounded-full text-sm font-medium">Our Services</a>
-          </div>
-        </div>
-        <div class="relative hidden md:block">
-          <div class="hero-img-wrap relative aspect-[4/5] max-w-md ml-auto rounded-2xl overflow-hidden shadow-2xl shadow-ink/10" style="animation-delay:0.5s">
-            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&q=85" alt="Healthy skin" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/15 via-transparent to-transparent"></div>
-          </div>
-          <div class="absolute -left-3 bottom-14 bg-white/95 backdrop-blur rounded-xl shadow-lg p-4 border border-nude-200 float-y">
-            <p class="text-[9px] tracking-[0.2em] uppercase text-gold mb-0.5">Mira Road East</p>
-            <p class="font-serif text-xl text-ink">Trusted Care</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="py-16 px-5 bg-[#EDE4D9]/70">
+<div class="max-w-3xl mx-auto text-center reveal">
+<p class="font-serif text-2xl md:text-3xl text-ink italic leading-relaxed mb-5">“SkinNey Derma Clinic is one of the best skin clinics in Mira Road. The doctor is highly experienced and helped me with my acne issues.”</p>
+<p class="text-sm font-medium text-ink-soft">Gaurango Das · Mira Road</p>
+</div>
+</section>
 
-    <!-- EXPERTISE -->
-    <section class="py-20 md:py-28 px-5 bg-nude-50">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-          <p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-3">Expertise Areas</p>
-          <h2 class="font-serif text-3xl md:text-4xl font-medium text-ink leading-snug">
-            Allow your skin, hair, and confidence to experience a journey of healthy, radiant beauty.
-          </h2>
-        </div>
-        <div class="grid sm:grid-cols-3 gap-6">
-          <div class="card bg-white rounded-2xl p-7 border border-nude-200/70 reveal">
-            <div class="w-11 h-11 rounded-full bg-nude-100 flex items-center justify-center text-xl mb-4">✨</div>
-            <h3 class="font-serif text-xl font-medium mb-2">Advanced Skin Care</h3>
-            <p class="text-ink-muted text-sm leading-relaxed">Restore your skin’s health, glow, and texture with personalized dermatology treatments.</p>
-          </div>
-          <div class="card bg-white rounded-2xl p-7 border border-nude-200/70 reveal" style="transition-delay:80ms">
-            <div class="w-11 h-11 rounded-full bg-nude-100 flex items-center justify-center text-xl mb-4">🌿</div>
-            <h3 class="font-serif text-xl font-medium mb-2">Hair Restoration</h3>
-            <p class="text-ink-muted text-sm leading-relaxed">Strengthen and rejuvenate your hair with advanced growth and scalp care solutions.</p>
-          </div>
-          <div class="card bg-white rounded-2xl p-7 border border-nude-200/70 reveal" style="transition-delay:160ms">
-            <div class="w-11 h-11 rounded-full bg-nude-100 flex items-center justify-center text-xl mb-4">💎</div>
-            <h3 class="font-serif text-xl font-medium mb-2">Aesthetic Enhancements</h3>
-            <p class="text-ink-muted text-sm leading-relaxed">Enhance your natural beauty with safe, modern aesthetic procedures.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="py-20 px-5 bg-nude-50">
+<div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+<div class="reveal">
+<p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">Visit Us</p>
+<h2 class="font-serif text-3xl md:text-4xl font-medium text-ink mb-6">Make an appointment</h2>
+<p class="text-ink-soft text-sm leading-relaxed mb-2">105, Urban Grandeur, Above Starbucks<br>Chandan Shanti Link Road, Mira-Bhayandar – 401107</p>
+<p class="text-ink-soft text-sm mb-2">All 7 Days · 11 AM – 9 PM</p>
+<p class="text-ink-soft text-sm mb-6"><a href="tel:+919920706262" class="hover:text-gold">+91 99207 06262</a></p>
+<a href="https://wa.me/919920706262" target="_blank" class="btn-g px-6 py-3 rounded-full text-sm font-medium inline-block">WhatsApp Book</a>
+</div>
+<div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-nude-200 shadow-lg reveal">
+<iframe title="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5!2d72.85!3d19.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDE2JzQ4LjAiTiA3MsKwNTEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1" class="absolute inset-0 w-full h-full" allowfullscreen loading="lazy"></iframe>
+</div>
+</div>
+</section>
 
-    <!-- SERVICES -->
-    <section id="services" class="py-20 md:py-28 px-5 bg-[#F0E9E0]">
-      <div class="max-w-6xl mx-auto">
-        <div class="mb-12 reveal">
-          <p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">Our Treatments</p>
-          <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-ink">SkinNey Services</h2>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <article class="card bg-white rounded-2xl overflow-hidden border border-nude-200/60 reveal">
-            <div class="h-36 bg-gradient-to-br from-nude-200 to-nude-100 flex items-center justify-center text-4xl">💉</div>
-            <div class="p-5">
-              <h3 class="font-serif text-lg font-medium mb-1">PRP Therapy</h3>
-              <p class="text-ink-muted text-xs mb-3 leading-relaxed">Natural hair regrowth & facial rejuvenation.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gold text-sm font-medium">From ₹8,999</span>
-                <a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20PRP" class="text-[10px] uppercase tracking-wide text-ink-soft hover:text-gold">Book →</a>
-              </div>
-            </div>
-          </article>
-          <article class="card bg-white rounded-2xl overflow-hidden border border-nude-200/60 reveal" style="transition-delay:60ms">
-            <div class="h-36 bg-gradient-to-br from-emerald-50 to-nude-100 flex items-center justify-center text-4xl">🌱</div>
-            <div class="p-5">
-              <h3 class="font-serif text-lg font-medium mb-1">GFC Therapy</h3>
-              <p class="text-ink-muted text-xs mb-3 leading-relaxed">Advanced growth factor for superior density.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gold text-sm font-medium">From ₹12,999</span>
-                <a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20GFC" class="text-[10px] uppercase tracking-wide text-ink-soft hover:text-gold">Book →</a>
-              </div>
-            </div>
-          </article>
-          <article class="card bg-white rounded-2xl overflow-hidden border border-nude-200/60 reveal" style="transition-delay:120ms">
-            <div class="h-36 bg-gradient-to-br from-rose-50 to-nude-100 flex items-center justify-center text-4xl">✨</div>
-            <div class="p-5">
-              <h3 class="font-serif text-lg font-medium mb-1">Laser Treatments</h3>
-              <p class="text-ink-muted text-xs mb-3 leading-relaxed">IPL, hair reduction, pigmentation & scars.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gold text-sm font-medium">From ₹4,999</span>
-                <a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20Laser" class="text-[10px] uppercase tracking-wide text-ink-soft hover:text-gold">Book →</a>
-              </div>
-            </div>
-          </article>
-          <article class="card bg-white rounded-2xl overflow-hidden border border-nude-200/60 reveal" style="transition-delay:180ms">
-            <div class="h-36 bg-gradient-to-br from-purple-50 to-nude-100 flex items-center justify-center text-4xl">💋</div>
-            <div class="p-5">
-              <h3 class="font-serif text-lg font-medium mb-1">Lip Blush & PMU</h3>
-              <p class="text-ink-muted text-xs mb-3 leading-relaxed">Natural permanent lip & brow enhancement.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gold text-sm font-medium">From ₹9,999</span>
-                <a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20Lip%20Blush" class="text-[10px] uppercase tracking-wide text-ink-soft hover:text-gold">Book →</a>
-              </div>
-            </div>
-          </article>
-          <article class="card bg-white rounded-2xl overflow-hidden border border-nude-200/60 reveal" style="transition-delay:240ms">
-            <div class="h-36 bg-gradient-to-br from-amber-50 to-nude-100 flex items-center justify-center text-4xl">✏️</div>
-            <div class="p-5">
-              <h3 class="font-serif text-lg font-medium mb-1">Microblading</h3>
-              <p class="text-ink-muted text-xs mb-3 leading-relaxed">Precision hair-stroke brows, soft shading.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gold text-sm font-medium">From ₹7,999</span>
-                <a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20Microblading" class="text-[10px] uppercase tracking-wide text-ink-soft hover:text-gold">Book →</a>
-              </div>
-            </div>
-          </article>
-          <article class="card bg-white rounded-2xl overflow-hidden border border-nude-200/60 reveal" style="transition-delay:300ms">
-            <div class="h-36 bg-gradient-to-br from-sky-50 to-nude-100 flex items-center justify-center text-4xl">🧴</div>
-            <div class="p-5">
-              <h3 class="font-serif text-lg font-medium mb-1">Skin Rejuvenation</h3>
-              <p class="text-ink-muted text-xs mb-3 leading-relaxed">Peels, MNRF, hydrafacials & anti-aging.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gold text-sm font-medium">From ₹3,499</span>
-                <a href="https://wa.me/919920706262?text=Hi,%20I%20want%20to%20book%20Skin%20treatment" class="text-[10px] uppercase tracking-wide text-ink-soft hover:text-gold">Book →</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+<footer class="border-t border-nude-200 bg-[#F0E9E0]/50 py-10 px-5">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-5">
+<a href="index.html"><img src="SkinNey.png" alt="SkinNey" class="h-9 w-auto"/></a>
+<div class="flex gap-6 text-[11px] text-ink-muted">
+<a href="about.html" class="hover:text-gold">About</a><a href="services.html" class="hover:text-gold">Services</a><a href="contact.html" class="hover:text-gold">Contact</a>
+</div>
+<p class="text-[10px] text-ink-muted/50">© 2026 SkinNey Derma Clinic</p>
+</div>
+</footer>
+</main>
 
-    <!-- RESULTS -->
-    <section id="results" class="py-20 md:py-28 px-5 bg-nude-50">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">Real Results</p>
-          <h2 class="font-serif text-3xl md:text-4xl font-medium text-ink">Before &amp; After</h2>
-        </div>
-        <div class="relative max-w-2xl mx-auto mb-10 reveal">
-          <div class="ba-slider relative aspect-[16/10] rounded-2xl overflow-hidden border border-nude-200 shadow-xl cursor-ew-resize" id="ba-slider">
-            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=85')"></div>
-            <div class="absolute inset-0 overflow-hidden" style="width:50%" id="ba-before-wrap">
-              <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1200&q=85');width:200%;max-width:none"></div>
-            </div>
-            <div class="absolute top-0 bottom-0 w-0.5 bg-gold z-10" id="ba-handle" style="left:50%">
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center shadow-lg">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/></svg>
-              </div>
-            </div>
-            <span class="absolute top-3 left-3 bg-white/90 text-[9px] tracking-widest uppercase px-2.5 py-1 rounded-full">Before</span>
-            <span class="absolute top-3 right-3 bg-gold text-white text-[9px] tracking-widest uppercase font-medium px-2.5 py-1 rounded-full">After</span>
-          </div>
-        </div>
-        <div class="grid sm:grid-cols-3 gap-4">
-          <div class="bg-white rounded-xl p-5 border border-nude-200/70 reveal">
-            <p class="text-gold text-[9px] tracking-widest uppercase mb-1">4 Weeks</p>
-            <h4 class="font-serif text-lg font-medium mb-1">Density Improved</h4>
-            <p class="text-ink-muted text-xs">Visible baby hair after consistent GFC.</p>
-          </div>
-          <div class="bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:80ms">
-            <p class="text-gold text-[9px] tracking-widest uppercase mb-1">3–6 Months</p>
-            <h4 class="font-serif text-lg font-medium mb-1">Optimal Window</h4>
-            <p class="text-ink-muted text-xs">Full transformation with protocol adherence.</p>
-          </div>
-          <div class="bg-white rounded-xl p-5 border border-nude-200/70 reveal" style="transition-delay:160ms">
-            <p class="text-gold text-[9px] tracking-widest uppercase mb-1">Long-term</p>
-            <h4 class="font-serif text-lg font-medium mb-1">Consistency Wins</h4>
-            <p class="text-ink-muted text-xs">Maintenance protects every result.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIAL -->
-    <section class="py-16 px-5 bg-[#EDE4D9]/80">
-      <div class="max-w-3xl mx-auto text-center reveal">
-        <p class="font-serif text-2xl md:text-3xl text-ink italic leading-relaxed mb-5">
-          “SkinNey Derma Clinic is one of the best skin clinics in Mira Road. The doctor is highly experienced and helped me with my acne issues.”
-        </p>
-        <p class="text-sm font-medium text-ink-soft">Gaurango Das · Mira Road</p>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section id="visit" class="py-20 md:py-28 px-5 bg-nude-50">
-      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <p class="text-gold text-[11px] tracking-[0.25em] uppercase mb-2">Visit Us</p>
-          <h2 class="font-serif text-3xl md:text-4xl font-medium text-ink mb-8">Make an appointment</h2>
-          <div class="space-y-5 text-sm">
-            <div>
-              <p class="text-[9px] tracking-widest uppercase text-gold mb-1">Location</p>
-              <p class="text-ink-soft leading-relaxed">105, Urban Grandeur<br>Above Starbucks, Chandan Shanti Link Road<br>Mira-Bhayandar, Maharashtra – 401107</p>
-            </div>
-            <div>
-              <p class="text-[9px] tracking-widest uppercase text-gold mb-1">Hours</p>
-              <p class="text-ink-soft">All 7 Days · 11:00 AM – 9:00 PM</p>
-            </div>
-            <div>
-              <p class="text-[9px] tracking-widest uppercase text-gold mb-1">Contact</p>
-              <p class="text-ink-soft">
-                <a href="tel:+919920706262" class="hover:text-gold">+91 99207 06262</a><br>
-                <a href="mailto:skinneyderma@gmail.com" class="hover:text-gold">skinneyderma@gmail.com</a>
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-3 mt-8">
-            <a href="https://wa.me/919920706262" target="_blank" rel="noopener" class="btn-gold px-6 py-3 rounded-full text-sm font-medium">WhatsApp Book</a>
-            <a href="tel:+919920706262" class="btn-line px-6 py-3 rounded-full text-sm font-medium">Call Now</a>
-          </div>
-        </div>
-        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-nude-200 shadow-lg reveal">
-          <iframe title="Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5!2d72.85!3d19.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDE2JzQ4LjAiTiA3MsKwNTEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1" class="absolute inset-0 w-full h-full" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <footer class="border-t border-nude-200 bg-[#F0E9E0]/60 py-10 px-5">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-5">
-        <div class="text-center md:text-left">
-          <p class="font-serif text-xl text-ink">SkinNey</p>
-          <p class="text-[10px] text-ink-muted">Derma Clinic · Mira Road East</p>
-        </div>
-        <a href="https://instagram.com/skinney_mumbai" target="_blank" rel="noopener" class="text-[11px] text-ink-muted hover:text-gold tracking-wide">Instagram</a>
-        <p class="text-[10px] text-ink-muted/50">© 2026 SkinNey Derma Clinic</p>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('done');
-        setTimeout(() => {
-          document.querySelectorAll('.hero-word, .hero-sub, .hero-cta, .hero-img-wrap').forEach(el => el.classList.add('play'));
-        }, 300);
-      }, 2400);
-    });
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-      });
-    }, { threshold:0.12, rootMargin:'0px 0px -30px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    const secs = document.querySelectorAll('section[id]');
-    const links = document.querySelectorAll('.nav-a');
-    window.addEventListener('scroll', () => {
-      let cur = '';
-      secs.forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
-      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
-    }, { passive:true });
-
-    const slider = document.getElementById('ba-slider');
-    const handle = document.getElementById('ba-handle');
-    const before = document.getElementById('ba-before-wrap');
-    if (slider && handle && before) {
-      let drag = false;
-      const set = x => {
-        const r = slider.getBoundingClientRect();
-        let p = Math.max(4, Math.min(96, ((x - r.left) / r.width) * 100));
-        handle.style.left = p + '%';
-        before.style.width = p + '%';
-      };
-      handle.addEventListener('mousedown', e => { drag = true; e.preventDefault(); });
-      handle.addEventListener('touchstart', () => { drag = true; }, { passive:true });
-      window.addEventListener('mouseup', () => { drag = false; });
-      window.addEventListener('touchend', () => { drag = false; });
-      window.addEventListener('mousemove', e => { if (drag) set(e.clientX); });
-      window.addEventListener('touchmove', e => { if (drag) set(e.touches[0].clientX); }, { passive:true });
-      slider.addEventListener('click', e => {
-        if (e.target === handle || handle.contains(e.target)) return;
-        set(e.clientX);
-      });
-    }
-  </script>
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('done');setTimeout(()=>{document.querySelectorAll('.hw,.hs,.hc,.hi').forEach(e=>e.classList.add('play'))},280)},2300)});
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
 </body>
 </html>
