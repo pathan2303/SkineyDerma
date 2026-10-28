@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkinNey Admin | Clinic Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { DEFAULT: '#D4AF37', light: '#E8D48B', dark: '#B8962E' },
+            charcoal: { DEFAULT: '#0E0E0E', soft: '#1A1A1A', muted: '#2A2A2A' },
+            ivory: { DEFAULT: '#F8F5F0', soft: '#F0EBE3' }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-charcoal text-ivory font-sans antialiased">
+  <!-- Login -->
+  <div id="admin-login" class="fixed inset-0 z-50 bg-charcoal flex items-center justify-center p-6">
+    <div class="w-full max-w-sm">
+      <div class="text-center mb-8">
+        <p class="font-serif text-3xl text-gold">SkinNey</p>
+        <p class="text-ivory/40 text-sm mt-1">Staff Dashboard</p>
+      </div>
+      <form id="admin-login-form" class="bg-charcoal-soft border border-white/10 rounded-2xl p-6 space-y-4">
+        <div>
+          <label class="block text-xs text-ivory/50 mb-1.5">Staff ID / Email</label>
+          <input type="text" class="input-lux w-full px-4 py-3 rounded-xl text-sm" value="admin@skinney" required />
+        </div>
+        <div>
+          <label class="block text-xs text-ivory/50 mb-1.5">Password</label>
+          <input type="password" class="input-lux w-full px-4 py-3 rounded-xl text-sm" value="demo" required />
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-gold text-charcoal font-medium rounded-xl">Sign In</button>
+        <p class="text-center text-xs text-ivory/30">Demo credentials pre-filled</p>
+      </form>
+      <p class="text-center mt-6"><a href="index.html" class="text-xs text-ivory/40 hover:text-gold">← Website</a></p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="admin-app" class="hidden min-h-screen">
+    <header class="sticky top-0 z-40 bg-charcoal/95 backdrop-blur border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="font-serif text-xl text-gold">SkinNey</span>
+          <span class="text-xs bg-gold/20 text-gold px-2 py-0.5 rounded">Admin</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-ivory/50 hidden sm:inline">Mira Road Clinic</span>
+          <button id="logout-btn" class="text-sm text-ivory/50 hover:text-gold">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+      <!-- Side -->
+      <aside class="lg:w-48 flex-shrink-0 flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0">
+        <button data-panel="overview" class="admin-nav active px-4 py-2.5 rounded-xl text-sm text-left bg-gold/15 text-gold whitespace-nowrap">Overview</button>
+        <button data-panel="appointments" class="admin-nav px-4 py-2.5 rounded-xl text-sm text-left text-ivory/60 hover:bg-white/5 whitespace-nowrap">Appointments</button>
+        <button data-panel="inventory" class="admin-nav px-4 py-2.5 rounded-xl text-sm text-left text-ivory/60 hover:bg-white/5 whitespace-nowrap">Inventory</button>
+        <button data-panel="content" class="admin-nav px-4 py-2.5 rounded-xl text-sm text-left text-ivory/60 hover:bg-white/5 whitespace-nowrap">Content CMS</button>
+      </aside>
+
+      <!-- Panels -->
+      <div class="flex-1 min-w-0">
+        <!-- OVERVIEW -->
+        <div id="panel-overview" class="admin-panel">
+          <h1 class="font-serif text-2xl md:text-3xl mb-6">Dashboard</h1>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-5">
+              <p class="text-xs text-ivory/40 mb-1">Today’s Consults</p>
+              <p class="text-3xl font-medium text-gold" id="stat-consults">12</p>
+            </div>
+            <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-5">
+              <p class="text-xs text-ivory/40 mb-1">Active Orders</p>
+              <p class="text-3xl font-medium" id="stat-orders">7</p>
+            </div>
+            <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-5">
+              <p class="text-xs text-ivory/40 mb-1">Revenue (Today)</p>
+              <p class="text-3xl font-medium" id="stat-revenue">₹48.2k</p>
+            </div>
+            <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-5">
+              <p class="text-xs text-ivory/40 mb-1">Pending Approvals</p>
+              <p class="text-3xl font-medium text-amber-400" id="stat-pending">3</p>
+            </div>
+          </div>
+          <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-6">
+            <h3 class="font-medium mb-4">Quick Actions</h3>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="showPanel('appointments')" class="px-4 py-2 text-sm rounded-xl border border-white/10 hover:border-gold/40 transition-colors">Manage Bookings</button>
+              <button onclick="showPanel('inventory')" class="px-4 py-2 text-sm rounded-xl border border-white/10 hover:border-gold/40 transition-colors">Update Stock</button>
+              <button onclick="showPanel('content')" class="px-4 py-2 text-sm rounded-xl border border-white/10 hover:border-gold/40 transition-colors">Upload Content</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- APPOINTMENTS -->
+        <div id="panel-appointments" class="admin-panel hidden">
+          <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+            <h1 class="font-serif text-2xl md:text-3xl">Appointments</h1>
+            <select id="appt-filter" class="input-lux px-3 py-2 rounded-xl text-sm">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="overflow-x-auto rounded-2xl border border-white/5">
+            <table class="w-full text-sm admin-table">
+              <thead class="bg-charcoal-muted">
+                <tr>
+                  <th class="text-left px-4 py-3">Patient</th>
+                  <th class="text-left px-4 py-3">Service</th>
+                  <th class="text-left px-4 py-3">Doctor</th>
+                  <th class="text-left px-4 py-3">Date / Time</th>
+                  <th class="text-left px-4 py-3">Status</th>
+                  <th class="text-left px-4 py-3">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appt-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- INVENTORY -->
+        <div id="panel-inventory" class="admin-panel hidden">
+          <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+            <h1 class="font-serif text-2xl md:text-3xl">Inventory</h1>
+            <button id="add-product-btn" class="px-4 py-2 bg-gold text-charcoal text-sm font-medium rounded-xl hover:bg-gold-light">+ Add Product</button>
+          </div>
+          <div class="overflow-x-auto rounded-2xl border border-white/5">
+            <table class="w-full text-sm admin-table">
+              <thead class="bg-charcoal-muted">
+                <tr>
+                  <th class="text-left px-4 py-3">Product</th>
+                  <th class="text-left px-4 py-3">Category</th>
+                  <th class="text-left px-4 py-3">Price</th>
+                  <th class="text-left px-4 py-3">Stock</th>
+                  <th class="text-left px-4 py-3">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inv-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CONTENT CMS -->
+        <div id="panel-content" class="admin-panel hidden">
+          <h1 class="font-serif text-2xl md:text-3xl mb-6">Content Management</h1>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-6">
+              <h3 class="font-medium mb-4">Upload Treatment Video</h3>
+              <form id="video-form" class="space-y-4">
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">Title</label>
+                  <input type="text" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" placeholder="e.g. PRP Aftercare Guide" required />
+                </div>
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">Category</label>
+                  <select class="input-lux w-full px-4 py-2.5 rounded-xl text-sm">
+                    <option>Hair</option>
+                    <option>Skin</option>
+                    <option>Laser</option>
+                    <option>PMU</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">Video File / URL</label>
+                  <input type="text" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Paste YouTube/Vimeo URL or upload" />
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-gold text-charcoal text-sm font-medium rounded-xl">Publish Video</button>
+              </form>
+            </div>
+            <div class="bg-charcoal-soft border border-white/5 rounded-2xl p-6">
+              <h3 class="font-medium mb-4">Before / After Gallery</h3>
+              <form id="ba-form" class="space-y-4">
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">Treatment Type</label>
+                  <select class="input-lux w-full px-4 py-2.5 rounded-xl text-sm">
+                    <option>Hair Regrowth</option>
+                    <option>Acne Scars</option>
+                    <option>PRP Face</option>
+                    <option>Laser</option>
+                    <option>Microblading</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">Before Image URL</label>
+                  <input type="text" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" placeholder="https://..." />
+                </div>
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">After Image URL</label>
+                  <input type="text" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" placeholder="https://..." />
+                </div>
+                <div>
+                  <label class="block text-xs text-ivory/50 mb-1.5">Caption / Notes</label>
+                  <input type="text" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" placeholder="4 weeks result..." />
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-gold text-charcoal text-sm font-medium rounded-xl">Add to Gallery</button>
+              </form>
+            </div>
+          </div>
+          <div class="mt-8 bg-charcoal-soft border border-white/5 rounded-2xl p-6">
+            <h3 class="font-medium mb-3">Published Items (Demo)</h3>
+            <ul id="cms-list" class="space-y-2 text-sm text-ivory/60">
+              <li>• PRP Hair Therapy Guide — published</li>
+              <li>• GFC vs PRP Explainer — published</li>
+              <li>• Hair Regrowth 4-week case — gallery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Product -->
+  <div id="product-modal" class="modal-backdrop fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+    <div class="modal-panel bg-charcoal-soft border border-white/10 rounded-2xl p-6 w-full max-w-md">
+      <h3 class="font-medium mb-4" id="modal-title">Add Product</h3>
+      <form id="product-form" class="space-y-4">
+        <input type="hidden" id="edit-id" />
+        <div>
+          <label class="block text-xs text-ivory/50 mb-1.5">Name</label>
+          <input type="text" id="prod-name" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" required />
+        </div>
+        <div>
+          <label class="block text-xs text-ivory/50 mb-1.5">Category</label>
+          <input type="text" id="prod-cat" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" required />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-ivory/50 mb-1.5">Price (₹)</label>
+            <input type="number" id="prod-price" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" required />
+          </div>
+          <div>
+            <label class="block text-xs text-ivory/50 mb-1.5">Stock</label>
+            <input type="number" id="prod-stock" class="input-lux w-full px-4 py-2.5 rounded-xl text-sm" required />
+          </div>
+        </div>
+        <div class="flex gap-3 pt-2">
+          <button type="button" id="modal-cancel" class="flex-1 py-2.5 border border-white/15 rounded-xl text-sm">Cancel</button>
+          <button type="submit" class="flex-1 py-2.5 bg-gold text-charcoal font-medium rounded-xl text-sm">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast fixed bottom-8 left-1/2 -translate-x-1/2 z-[80] bg-charcoal-soft border border-gold/30 px-6 py-3 rounded-full text-sm shadow-xl"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
