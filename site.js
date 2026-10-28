@@ -126,6 +126,7 @@
   }
 
   /* ---------- Reveals ---------- */
+  document.querySelectorAll('.h1 .ln').forEach((l) => { l.innerHTML = '<span class="kin-i">' + l.innerHTML + '</span>'; });
   document.querySelectorAll('.stg').forEach((p) => [...p.children].forEach((c, i) => {
     c.classList.add('rv');
     c.style.setProperty('--d', (i * 0.12).toFixed(2) + 's');
@@ -145,14 +146,14 @@
 
   /* ---------- Loader ---------- */
   const loader = document.getElementById('loader');
-  const minWait = new Promise((r) => setTimeout(r, reduce ? 150 : 1700));
+  const minWait = new Promise((r) => setTimeout(r, reduce ? 150 : 2700));
   const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
   const cap = new Promise((r) => setTimeout(r, 4500));
   Promise.race([Promise.all([minWait, loaded]), cap]).then(() => {
     if (loader) loader.classList.add('out');
     root.classList.add('ready');
-    setTimeout(startReveal, reduce ? 0 : 450);
-    setTimeout(() => loader && loader.remove(), 1400);
+    setTimeout(startReveal, reduce ? 0 : 650);
+    setTimeout(() => loader && loader.remove(), 2000);
   });
 
   /* ---------- Mouse parallax (weightless, eased) ---------- */
